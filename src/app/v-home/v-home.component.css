@@ -1,0 +1,17 @@
+.header__navbar{
+    border-bottom: 1px solid black;
+}
+.title__text{
+    font-family: 'PT Serif', serif;
+    text-transform: uppercase;
+}
+.main__sidebar{
+    border-right: 4px solid black;
+    margin-top: 30%;
+    height: 100vh;
+}
+.sidebar__text{
+    font-family: 'PT Serif', serif;
+    text-transform: capitalize;
+}
+
