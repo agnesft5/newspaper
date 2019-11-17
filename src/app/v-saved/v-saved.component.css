@@ -63,3 +63,9 @@
 .sidebar__saved:hover{
     color: #888;
 }
+.report__card{
+    transition: .5s;
+}
+.report__card:hover{
+    opacity: .4;
+}

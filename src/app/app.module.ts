@@ -7,12 +7,16 @@ import { VReportComponent } from './v-report/v-report.component';
 import { RouterModule, Routes } from '@angular/router'
 import { DataService } from './services/data.service';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { VSavedComponent } from './v-saved/v-saved.component'
 
 const config: Routes = [
   { "path": "", "component": VHomeComponent },
   { "path": "home", "component": VHomeComponent },
-  { "path": "report", "component": VReportComponent },
+  { "path": "report/top/:i", "component": VReportComponent },
+  { "path": "report/all/:i", "component": VReportComponent },
+  { "path": "report/saved/:i", "component": VReportComponent },
+  { "path": "saved-for-later", "component": VSavedComponent },
   { "path": "**", "component": VHomeComponent }
 ]
 
@@ -20,7 +24,8 @@ const config: Routes = [
   declarations: [
     AppComponent,
     VHomeComponent,
-    VReportComponent
+    VReportComponent,
+    VSavedComponent
   ],
   imports: [
     BrowserModule,

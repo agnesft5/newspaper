@@ -25,7 +25,7 @@
                         <small class="main__text text-capitalize mt-2 sidebar__category">{{category}}</small>
                     </div>
                     <br>
-                    <p  routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
+                    <p routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
                             class="fas fa-glasses"></i> Saved for later</p>
                 </div>
             </div>
@@ -35,17 +35,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <div *ngIf="article" class="report__container mx-5 mb-5">
-                                <p class="main__text mt-5 text-center text-capitalize font-weight-bold">
-                                    {{article["title"]}}</p>
-                                <img class="report__img" src="{{article['urlToImage']}}">
-                                <small class="main__text">{{article["description"]}}</small>
-                                <hr class="w-75">
-                                <small class="main__text">{{article["content"]}}</small>
-                                <small class="main__text mt-3"><a href="{{article['url']}}">Read de full
-                                        report</a></small>
-                                <small class="main__text mt-3"><span>{{article["publishedAt"]}}</span> |
-                                    <span>{{article["author"]}}</span></small>
+                            <div *ngFor="let article of articles, let i = index">
+                                <div *ngIf="articles">
+                                    <div routerLink="/report/saved/{{i}}" class="report__card report__container mx-5 mb-5">
+                                        <p class="main__text mt-5 text-center text-capitalize font-weight-bold">
+                                            {{i+1}}. {{article["title"]}}</p>
+                                        <img class="report__img" src="{{article['urlToImage']}}">
+                                        <small class="main__text">{{article["description"]}}</small>
+                                        <hr class="w-75">
+                                        <small class="main__text mt-3"><span>{{article["publishedAt"]}}</span> |
+                                            <span>{{article["author"]}}</span></small>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>

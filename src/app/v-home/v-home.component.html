@@ -4,7 +4,7 @@
         </div>
         <div class="col-12 mx-2 col-md-10 ">
             <div class=" text-center text-weight-bold mt-5 header__navbar">
-                <h1 class="title__text">Neoland Journal</h1>
+                <h1 routerLink="/home" class="title__text neoland__title">Neoland Journal</h1>
                 <h6 class="title__text">Newspaper & Magazine</h6>
             </div>
         </div>
@@ -14,27 +14,99 @@
 </header>
 <main>
     <div class="row">
-        <div class="col-0 col-sm-3 d-none d-md-block">
+        <div class="col-0 col-sm-3 d-none d-lg-block">
             <div class="main__sidebar">
                 <div class="sidebar__contents ml-5">
                     <br>
-                    <p class="ml-2 mb-1 text-uppercase sidebar__text">Categories</p>
+                    <p routerLink="/home" class="ml-2 mb-1 text-uppercase main__text sidebar__home">Home</p>
+                    <br>
+                    <p class="ml-2 mb-1 text-uppercase main__text">Categories</p>
                     <div class="ml-3" *ngFor="let category of categories, let i = index">
-                        <small class="sidebar__text mt-2">{{category}}</small>
+                        <small class="main__text text-capitalize mt-2 sidebar__category">{{category}}</small>
                     </div>
+                    <br>
+                    <p routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
+                            class="fas fa-glasses"></i> Saved for later</p>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-9">
+        <div class="col-12 col-lg-9">
             <div class="main__body">
-                <div class="row">
-                    <div class="col-12 col-md-7">
-
+                <div class="row w-100">
+                    <div class="col-12 col-lg-7 px-0 w-75">
+                        <h1 class="title__text text-center mt-5">Everything</h1>
+                        <div class="noticiasAll__container">
+                            <div *ngFor="let articleAll of articlesAll, let i = index" class="noticias">
+                                <div *ngIf="showArticle(articlesAll,i)">
+                                    <div class="report__card" routerLink="/report/all/{{i}}">
+                                        <p class="main__text mt-5 mx-5 text-center text-capitalize font-weight-bold">
+                                            {{i+1}}. {{articleAll["title"]}}</p>
+                                        <div class="report__content mx-5">
+                                            <img class="reportAll__img" src="{{articleAll['urlToImage']}}">
+                                            <small class="main__text">{{articleAll["description"]}}</small>
+                                            <hr class="w-75">
+                                            <small class="main__text mt-3"><span>{{articleAll["publishedAt"]}}</span> |
+                                                <span>{{articleAll["author"]}}</span></small>
+                                        </div>
+                                    </div>
+                                    <p (click)="saveForLater(articleAll,i)"
+                                        class="main__text text-right mr-3 saveForLater"><i class="fas fa-glasses"> Save
+                                            for later</i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-5">
-                        <h1 class="title__text text-center">Top Headlines</h1>
-                        <div *ngFor="let noticia of noticias" class="noticias">
-                            
+                    <div class="col-12 col-lg-5 px-0 w-75">
+                        <h1 class="title__text text-center mt-5">Top Headlines</h1>
+                        <div class="noticiasTop__container">
+                            <div *ngFor="let articleTop of articlesTop, let i = index" class="noticias">
+                                <div class="report__card" routerLink="/report/top/{{i}}">
+                                    <p class="main__text mt-5 mx-5 text-center text-capitalize font-weight-bold">
+                                        {{i+1}}.
+                                        {{articleTop["title"]}}</p>
+                                    <div class="report__content mx-5">
+                                        <img class="reportTop__img" src="{{articleTop['urlToImage']}}">
+                                        <small class="main__text">{{articleTop["description"]}}</small>
+                                        <hr class="w-75">
+                                        <small class="main__text mt-3"><span>{{articleTop["publishedAt"]}}</span> |
+                                            <span>{{articleTop["author"]}}</span></small>
+                                    </div>
+                                </div>
+                                <p (click)="saveForLater(articleTop,i)"
+                                    class="main__text text-right mt-3 mr-3 saveForLater"><i class="fas fa-glasses"> Save
+                                        for later</i></p>
+                            </div>
+                        </div>
+                        <div class="space_bar">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <h1 class="title__text text-center mt-5">Saved For Later</h1>
+                                <div class="savedForLater__container">
+                                    <div *ngFor="let saved of savedDataArray, let i = index" class="saved">
+                                        <div *ngIf="savedDataArray">
+                                            <div class="report__card" routerLink="/report/saved/{{i}}">
+                                                <p
+                                                    class="main__text mt-5 mx-5 text-center text-capitalize font-weight-bold">
+                                                    {{i+1}}. {{saved.title}}</p>
+                                                <div class="report__content mx-5">
+                                                    <img class="reportTop__img" src="{{saved['urlToImage']}}}}">
+                                                    <small class="main__text">{{saved["description"]}}</small>
+                                                    <hr class="w-75">
+                                                    <small class="main__text mt-3"><span>{{saved["publishedAt"]}}</span>
+                                                        |
+                                                        <span>{{saved["author"]}}</span></small>
+                                                </div>
+                                            </div>
+                                            <p (click)="deleteReport(i)"
+                                                class="main__text text-right mt-3 mr-3 saveForLater"><i
+                                                    class="fas fa-trash">Delete</i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

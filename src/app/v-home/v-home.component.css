@@ -10,8 +10,81 @@
     margin-top: 30%;
     height: 100vh;
 }
-.sidebar__text{
+.main__text{
     font-family: 'PT Serif', serif;
-    text-transform: capitalize;
+}
+.noticiasTop__container{
+    height: 80vh;
+    overflow-y: scroll;
+    margin-bottom: 7%;
 }
 
+.noticiasAll__container{
+    height: 150vh;
+    overflow-y: scroll;
+    margin-bottom: 7%;
+}
+.report__card{
+    transition: .5s;
+}
+.report__card:hover{
+    opacity: .4;
+}
+.reportTop__img{
+    width: 100%;
+    position: relative;
+    margin: 5% auto;
+}
+.reportAll__img{
+    width: 80%;
+    position: relative;
+    margin: 5% auto;
+}
+.report__content{
+    display: inline-grid;
+}
+.neoland__title{
+    transition: .5s;
+    cursor: pointer;
+    
+}
+.neoland__title:hover{
+    color: #888;
+    cursor: pointer;
+    outline: 0;
+}
+.sidebar__home{
+    transition: .5s;
+    cursor: pointer;
+}
+.sidebar__home:hover{
+    color: #888;
+}
+.sidebar__category{
+    transition: .5s;
+    cursor: pointer;
+}
+.sidebar__category:hover{
+    color: 
+    #888;
+}
+.sidebar__saved{
+    transition: .5s;
+    cursor: pointer;
+}
+.sidebar__saved:hover{
+    color: #888;
+}
+.saveForLater{
+    cursor: pointer;
+}
+.savedForLater__container{
+    height: 54vh;
+    overflow-y: scroll;
+    margin-bottom: 7%;
+}
+.space_bar{
+    border-bottom: 1px solid black;
+    width: 75%;
+    margin-left: 10%;
+}
