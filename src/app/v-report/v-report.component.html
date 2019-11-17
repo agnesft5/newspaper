@@ -11,6 +11,19 @@
         <div class="col-0 col-md-1">
         </div>
     </div>
+    <div class="row">
+        <div class="col-12 d-block d-md-none">
+            <div class="row headermp__menubar">
+                <div class="col-6">
+                    <p routerLink="/home" class="mt-4 float-right text-uppercase main__text sidebar__home">Home</p>
+                </div>
+                <div class="col-6">
+                    <p routerLink="/saved-for-later" class="mt-4 float-left text-uppercase main__text sidebar__home"><i
+                            class="fas fa-glasses"></i> Saved for later</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <main>
     <div class="row">
@@ -25,7 +38,7 @@
                         <small class="main__text text-capitalize mt-2 sidebar__category">{{category}}</small>
                     </div>
                     <br>
-                    <p  routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
+                    <p routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
                             class="fas fa-glasses"></i> Saved for later</p>
                 </div>
             </div>

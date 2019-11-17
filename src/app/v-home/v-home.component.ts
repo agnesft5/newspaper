@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VHomeComponent implements OnInit {
 
-  categories = this._data.categories;
+  category:string;
   topHeadlines: any; //data
   everything: any //data
 
@@ -25,7 +25,15 @@ export class VHomeComponent implements OnInit {
   savedForLater: object;
   savedDataArray: object[];
 
+  style: object = { "color": "black" }
+
+  url:string;
+
+
   constructor(public _data: DataService, public _path: ActivatedRoute) {
+
+    
+
     this.subscription1 = this._data.topHeadlines.subscribe(
       (newValue) => {
         this.topHeadlines = newValue
@@ -56,6 +64,8 @@ export class VHomeComponent implements OnInit {
 
       })
 
+      this.category = _data.category
+      console.log(this.category)
 
 
   }
@@ -69,18 +79,24 @@ export class VHomeComponent implements OnInit {
   }
 
   saveForLater(report, index) {
+    //this.style = { "color": "#888" }
     this._data.saveData(report, index)
   }
 
   deleteReport(index) {
-    this.savedDataArray.splice(index,1);
+    this.savedDataArray.splice(index, 1);
     if (typeof (Storage) !== 'undefined') {
       localStorage.setItem("articles", JSON.stringify(this.savedDataArray))
     }
   }
 
+  changeUrl(){
+    this.url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&apiKey=6d1e9f0531774a84b98ac454cd66deb4`;
+    this._data.httpGetTop(this.url)
+  }
+
   ngOnInit() {
-    this._data.httpGetTop()
+    this._data.httpGetTop(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&apiKey=6d1e9f0531774a84b98ac454cd66deb4`)
     this._data.httpGetAll()
 
     if (JSON.parse(localStorage.getItem("articles")) !== null) {

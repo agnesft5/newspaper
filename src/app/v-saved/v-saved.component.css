@@ -69,3 +69,10 @@
 .report__card:hover{
     opacity: .4;
 }
+.headermp__menubar{
+    width: 82%;
+    margin: 0 auto;
+    margin-top: 5%;
+    border-top: 3px solid black;
+    border-bottom: 1px solid black;
+}

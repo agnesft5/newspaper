@@ -13,9 +13,7 @@ import { VSavedComponent } from './v-saved/v-saved.component'
 const config: Routes = [
   { "path": "", "component": VHomeComponent },
   { "path": "home", "component": VHomeComponent },
-  { "path": "report/top/:i", "component": VReportComponent },
-  { "path": "report/all/:i", "component": VReportComponent },
-  { "path": "report/saved/:i", "component": VReportComponent },
+  { "path": "report/:type/:i", "component": VReportComponent },
   { "path": "saved-for-later", "component": VSavedComponent },
   { "path": "**", "component": VHomeComponent }
 ]

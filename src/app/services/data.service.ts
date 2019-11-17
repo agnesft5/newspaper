@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
 import { Observable } from 'rxjs'
+import { NgStyle } from '@angular/common';
 
 
 @Injectable({
@@ -9,23 +10,23 @@ import { Observable } from 'rxjs'
 })
 export class DataService {
 
-  categories: string[] = ["business", "entertainment", "general", "healt", "science", "sports", "technology"]
+  category: string = "general"
+
   topHeadlines: Subject<object> = new Subject<object>();
   everything: Subject<object> = new Subject<object>();
   savedForLater: Subject<object> = new Subject<object>();
   savedDataArray: BehaviorSubject<object[]> = new BehaviorSubject<object[]>([]);
-
-  article: BehaviorSubject<object> = new BehaviorSubject <object>({});
+  
 
 
 
   constructor(public _http: HttpClient) {
 
-    
+
   }
 
-  httpGetTop() {
-    this._http.get('https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&apiKey=6d1e9f0531774a84b98ac454cd66deb4', {
+  httpGetTop(url) {
+    this._http.get(url, {
       headers: new HttpHeaders({ "x-requested-witdh": "XMLHResponse" })
     }).subscribe(
       (result) => {
@@ -49,10 +50,5 @@ export class DataService {
     console.log(this.savedDataArray)
   }
 
-  changeArticle(report:object){
-    this.article.next(report)
-  }
-
-  
 
 }

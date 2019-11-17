@@ -11,89 +11,89 @@ import { ActivatedRoute } from '@angular/router';
 export class VReportComponent implements OnInit {
 
   i: number;
+  type: string;
   noticias: any;
 
   articles: object[] = []
   article: object;
 
-  subscription1: Subscription;
+  subscriptionTop: Subscription;
   articlesTop: object[];
   articleTop: object;
 
-  subscription2: Subscription;
+  subscriptionAll: Subscription;
   articlesAll: object[];
   articleAll: object;
 
 
 
-  subscription3: Subscription;
-
-  savedForLater: object;
-  savedDataArray: object[];
-
+  subscriptionSaved: Subscription;
   savedReports: object[]
   savedReport: object;
 
-  subscription4: Subscription;
-
-  categories: string[] = this._data.categories
+  category: string = this._data.category
 
   constructor(public _data: DataService, public _path: ActivatedRoute) {
 
+
+    
     this.article = {}
 
-    this.subscription1 = this._path.params.subscribe((newValue) => {
-      this.i = newValue.i;
-    })
-    this.subscription1 = this._data.topHeadlines.subscribe(
+    this.subscriptionTop = this._path.params.subscribe(
+      (newValue) => {
+        this.i = newValue.i;
+        this.type = newValue.type
+      })
+    this.subscriptionTop = this._data.topHeadlines.subscribe(
       (newValue) => {
         this.noticias = newValue
-        this.articlesTop = this.noticias["articles"]
-        this.articleTop = this.articlesTop[this.i]
-        this.changeArticle(this.articleTop)
+        if (this.type === "top") {
+          this.articlesTop = this.noticias["articles"]
+          this.articleTop = this.articlesTop[this.i]
+          this.article = this.articleTop;
+        }
         console.log(this.article, "top")
       })
 
-    this.subscription2 = this._path.params.subscribe(
+    this.subscriptionAll = this._path.params.subscribe(
       (newValue) => {
         this.i = newValue.i;
+        this.type = newValue.type;
       })
-    this.subscription2 = this._data.everything.subscribe(
+    this.subscriptionAll = this._data.everything.subscribe(
       (newValue) => {
         this.noticias = newValue
-        this.articlesAll = this.noticias["articles"]
-        this.articleAll = this.articlesAll[this.i]
-        this.changeArticle(this.articleAll)
+        if (this.type === "all") {
+          this.articlesAll = this.noticias["articles"]
+          this.articleAll = this.articlesAll[this.i]
+          this.article = this.articleAll;
+        }
+
         console.log(this.article, "all")
       }
     )
 
 
-    this.subscription3 = this._path.params.subscribe(
+    this.subscriptionSaved = this._path.params.subscribe(
       (newValue) => {
         this.i = newValue.i;
-        this.savedReports = JSON.parse(localStorage.getItem("articles"))
-        this.savedReport = this.savedReports[this.i]
-        this.changeArticle(this.savedReport)
+        this.type = newValue.type;
+        if (this.type === "saved") {
+          this.savedReports = JSON.parse(localStorage.getItem("articles"))
+          this.savedReport = this.savedReports[this.i]
+          this.article = this.savedReport;
+        }
         console.log(this.article, "saved")
       })
 
-
-    this.subscription4 = this._data.article.subscribe(
-      (newValue) => {
-        this.article = newValue;
-      }
-    )
+      this.category = this._data.category
 
 
   }
 
-  changeArticle(report: object) {
-    this._data.changeArticle(report)
-  }
 
   ngOnInit() {
-    this._data.httpGetTop()
+    this._data.httpGetTop(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&apiKey=6d1e9f0531774a84b98ac454cd66deb4`)
     this._data.httpGetAll()
   }
 

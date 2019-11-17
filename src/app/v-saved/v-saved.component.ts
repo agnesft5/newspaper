@@ -11,14 +11,14 @@ import { DataService } from '../services/data.service';
 })
 export class VSavedComponent implements OnInit {
 
-  categories: string[];
+  category: any;
 
   articles: object[];
   article: object;
 
   constructor(public _data:DataService, public _path:ActivatedRoute) {
 
-    this.categories = this._data.categories;
+    this.category = this._data.category;
 
 
   }

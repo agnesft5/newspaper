@@ -11,18 +11,41 @@
         <div class="col-0 col-md-1">
         </div>
     </div>
+    <div class="row">
+        <div class="col-12 d-block d-md-none">
+            <div class="row headermp__menubar">
+                <div class="col-6">
+                    <p routerLink="/home" class="mt-4 float-right text-uppercase main__text sidebar__home">Home</p>
+                </div>
+                <div class="col-6">
+                    <p routerLink="/saved-for-later" class="mt-4 float-left text-uppercase main__text sidebar__home"><i
+                            class="fas fa-glasses"></i> Saved for later</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <main>
     <div class="row">
         <div class="col-0 col-sm-3 d-none d-lg-block">
             <div class="main__sidebar">
-                <div class="sidebar__contents ml-5">
+                <div class="sidebar__contents mx-5">
                     <br>
                     <p routerLink="/home" class="ml-2 mb-1 text-uppercase main__text sidebar__home">Home</p>
                     <br>
                     <p class="ml-2 mb-1 text-uppercase main__text">Categories</p>
-                    <div class="ml-3" *ngFor="let category of categories, let i = index">
-                        <small class="main__text text-capitalize mt-2 sidebar__category">{{category}}</small>
+                    <div class="form-group">
+                        <select [(ngModel)]="category" name="inputCategories" #inputCategories="ngModel"
+                            class="form-control main__text text-capitalize mt-2 sidebar__category" placeholder="General">
+                            <option value="business">business</option>
+                            <option value="entertainment">entertainment</option>
+                            <option value="general">general</option>
+                            <option value="health">health</option>
+                            <option value="science">science</option>
+                            <option value="sports">sports</option>
+                            <option value="technology">technology</option>
+                        </select>
+                        <button (click)="changeUrl()" type="submit" class="btn btn-dark mt-3"><span class="main-text">Send</span></button>
                     </div>
                     <br>
                     <p routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
@@ -73,7 +96,7 @@
                                             <span>{{articleTop["author"]}}</span></small>
                                     </div>
                                 </div>
-                                <p (click)="saveForLater(articleTop,i)"
+                                <p (click)="saveForLater(articleTop,i)" [ngStyle]="style"
                                     class="main__text text-right mt-3 mr-3 saveForLater"><i class="fas fa-glasses"> Save
                                         for later</i></p>
                             </div>
