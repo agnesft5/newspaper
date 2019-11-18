@@ -86,13 +86,14 @@ export class VReportComponent implements OnInit {
         console.log(this.article, "saved")
       })
 
-      this.category = this._data.category
+      //this.category = this._data.category
 
 
   }
 
 
   ngOnInit() {
+    this.category = this._data.category
     this._data.httpGetTop(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&apiKey=6d1e9f0531774a84b98ac454cd66deb4`)
     this._data.httpGetAll()
   }
