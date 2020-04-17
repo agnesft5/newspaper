@@ -11,13 +11,14 @@ import { NgStyle } from '@angular/common';
 export class DataService {
 
   category: string = "general"
-
+  cat:string;
   topHeadlines: Subject<object> = new Subject<object>();
   everything: Subject<object> = new Subject<object>();
   savedForLater: Subject<object> = new Subject<object>();
   savedDataArray: BehaviorSubject<object[]> = new BehaviorSubject<object[]>([]);
   
-
+  arrTopHeadlines: {};
+  arrEverything: {};
 
 
   constructor(public _http: HttpClient) {
@@ -30,6 +31,7 @@ export class DataService {
       headers: new HttpHeaders({ "x-requested-witdh": "XMLHResponse" })
     }).subscribe(
       (result) => {
+        this.arrTopHeadlines = result;
         this.topHeadlines.next(result)
       }
     )
@@ -40,6 +42,7 @@ export class DataService {
       headers: new HttpHeaders({ "x-requested-witdh": "XMLHResponse" })
     }).subscribe(
       (result) => {
+        this.arrEverything = result;
         this.everything.next(result)
       }
     )
@@ -50,5 +53,12 @@ export class DataService {
     console.log(this.savedDataArray)
   }
 
+  getSavedArticles() {
+    return JSON.parse(localStorage.getItem("articles"));
+  }
+
+  changeCategory(newCategory:string):void{
+    this.category = newCategory
+  }
 
 }

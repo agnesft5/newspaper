@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VHomeComponent implements OnInit {
 
-  category:string;
+  category:string = "general";
   topHeadlines: any; //data
   everything: any //data
 
@@ -18,6 +18,7 @@ export class VHomeComponent implements OnInit {
   subscription2: Subscription;
   subscription3: Subscription;
   subscription4: Subscription;
+  subscription5: Subscription;
 
   articlesTop: object[];
   articlesAll: object[];
@@ -49,24 +50,12 @@ export class VHomeComponent implements OnInit {
       (newValue) => {
         this.savedForLater = newValue
         this.savedDataArray.push(this.savedForLater)
-        console.log(this.savedForLater)
-        console.log(this.savedDataArray)
         if (typeof (Storage) !== 'undefined') {
           localStorage.setItem("articles", JSON.stringify(this.savedDataArray))
         }
 
 
       })
-
-    this.subscription4 = this._data.savedDataArray.subscribe(
-      (newValue) => {
-        this.savedDataArray = newValue;
-
-      })
-
-      this.category = _data.category
-      console.log(this.category)
-
 
   }
 

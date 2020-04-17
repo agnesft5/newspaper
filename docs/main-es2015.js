@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<header>\n    <div class=\"row\">\n        <div class=\"col-0 col-md-1\">\n        </div>\n        <div class=\"col-12 mx-2 col-md-10 \">\n            <div class=\" text-center text-weight-bold mt-5 header__navbar\">\n                <h1 routerLink=\"/home\" class=\"title__text neoland__title\">Neoland Journal</h1>\n                <h6 class=\"title__text\">Newspaper & Magazine</h6>\n            </div>\n        </div>\n        <div class=\"col-0 col-md-1\">\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-12 d-block d-md-none\">\n            <div class=\"row headermp__menubar\">\n                <div class=\"col-6\">\n                    <p routerLink=\"/home\" class=\"mt-4 float-right text-uppercase main__text sidebar__home\">Home</p>\n                </div>\n                <div class=\"col-6\">\n                    <p routerLink=\"/saved-for-later\" class=\"mt-4 float-left text-uppercase main__text sidebar__home\"><i\n                            class=\"fas fa-glasses\"></i> Saved for later</p>\n                </div>\n            </div>\n        </div>\n    </div>\n</header>\n<main>\n    <div class=\"row\">\n        <div class=\"col-0 col-sm-3 d-none d-lg-block\">\n            <div class=\"main__sidebar\">\n                <div class=\"sidebar__contents mx-5\">\n                    <br>\n                    <p routerLink=\"/home\" class=\"ml-2 mb-1 text-uppercase main__text sidebar__home\">Home</p>\n                    <br>\n                    <p class=\"ml-2 mb-1 text-uppercase main__text\">Categories</p>\n                    <div class=\"form-group\">\n                        <select [(ngModel)]=\"category\" name=\"inputCategories\" #inputCategories=\"ngModel\"\n                            class=\"form-control main__text text-capitalize mt-2 sidebar__category\" placeholder=\"General\">\n                            <option value=\"business\">business</option>\n                            <option value=\"entertainment\">entertainment</option>\n                            <option value=\"general\">general</option>\n                            <option value=\"health\">health</option>\n                            <option value=\"science\">science</option>\n                            <option value=\"sports\">sports</option>\n                            <option value=\"technology\">technology</option>\n                        </select>\n                        <button (click)=\"changeUrl()\" type=\"submit\" class=\"btn btn-dark mt-3\"><span class=\"main-text\">Send</span></button>\n                    </div>\n                    <br>\n                    <p routerLink=\"/saved-for-later\" class=\"ml-2 mb-1 text-uppercase main__text sidebar__saved\"><i\n                            class=\"fas fa-glasses\"></i> Saved for later</p>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-12 col-lg-9\">\n            <div class=\"main__body\">\n                <div class=\"row w-100\">\n                    <div class=\"col-12 col-lg-7 px-0 w-75\">\n                        <h1 class=\"title__text text-center mt-5\">Everything</h1>\n                        <div class=\"noticiasAll__container\">\n                            <div *ngFor=\"let articleAll of articlesAll, let i = index\" class=\"noticias\">\n                                <div *ngIf=\"showArticle(articlesAll,i)\">\n                                    <div class=\"report__card\" routerLink=\"/report/all/{{i}}\">\n                                        <p class=\"main__text mt-5 mx-5 text-center text-capitalize font-weight-bold\">\n                                            {{i+1}}. {{articleAll[\"title\"]}}</p>\n                                        <div class=\"report__content mx-5\">\n                                            <img class=\"reportAll__img\" src=\"{{articleAll['urlToImage']}}\">\n                                            <small class=\"main__text\">{{articleAll[\"description\"]}}</small>\n                                            <hr class=\"w-75\">\n                                            <small class=\"main__text mt-3\"><span>{{articleAll[\"publishedAt\"]}}</span> |\n                                                <span>{{articleAll[\"author\"]}}</span></small>\n                                        </div>\n                                    </div>\n                                    <p (click)=\"saveForLater(articleAll,i)\"\n                                        class=\"main__text text-right mr-3 saveForLater\"><i class=\"fas fa-glasses\"> Save\n                                            for later</i>\n                                    </p>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"col-12 col-lg-5 px-0 w-75\">\n                        <h1 class=\"title__text text-center mt-5\">Top Headlines</h1>\n                        <div class=\"noticiasTop__container\">\n                            <div *ngFor=\"let articleTop of articlesTop, let i = index\" class=\"noticias\">\n                                <div class=\"report__card\" routerLink=\"/report/top/{{i}}\">\n                                    <p class=\"main__text mt-5 mx-5 text-center text-capitalize font-weight-bold\">\n                                        {{i+1}}.\n                                        {{articleTop[\"title\"]}}</p>\n                                    <div class=\"report__content mx-5\">\n                                        <img class=\"reportTop__img\" src=\"{{articleTop['urlToImage']}}\">\n                                        <small class=\"main__text\">{{articleTop[\"description\"]}}</small>\n                                        <hr class=\"w-75\">\n                                        <small class=\"main__text mt-3\"><span>{{articleTop[\"publishedAt\"]}}</span> |\n                                            <span>{{articleTop[\"author\"]}}</span></small>\n                                    </div>\n                                </div>\n                                <p (click)=\"saveForLater(articleTop,i)\" [ngStyle]=\"style\"\n                                    class=\"main__text text-right mt-3 mr-3 saveForLater\"><i class=\"fas fa-glasses\"> Save\n                                        for later</i></p>\n                            </div>\n                        </div>\n                        <div class=\"space_bar\">\n                        </div>\n\n                        <div class=\"row\">\n                            <div class=\"col-12\">\n                                <h1 class=\"title__text text-center mt-5\">Saved For Later</h1>\n                                <div class=\"savedForLater__container\">\n                                    <div *ngFor=\"let saved of savedDataArray, let i = index\" class=\"saved\">\n                                        <div *ngIf=\"savedDataArray\">\n                                            <div class=\"report__card\" routerLink=\"/report/saved/{{i}}\">\n                                                <p\n                                                    class=\"main__text mt-5 mx-5 text-center text-capitalize font-weight-bold\">\n                                                    {{i+1}}. {{saved.title}}</p>\n                                                <div class=\"report__content mx-5\">\n                                                    <img class=\"reportTop__img\" src=\"{{saved['urlToImage']}}}}\">\n                                                    <small class=\"main__text\">{{saved[\"description\"]}}</small>\n                                                    <hr class=\"w-75\">\n                                                    <small class=\"main__text mt-3\"><span>{{saved[\"publishedAt\"]}}</span>\n                                                        |\n                                                        <span>{{saved[\"author\"]}}</span></small>\n                                                </div>\n                                            </div>\n                                            <p (click)=\"deleteReport(i)\"\n                                                class=\"main__text text-right mt-3 mr-3 saveForLater\"><i\n                                                    class=\"fas fa-trash\">Delete</i></p>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</main>");
+/* harmony default export */ __webpack_exports__["default"] = ("<header>\n    <div class=\"row\">\n        <div class=\"col-0 col-md-1\">\n        </div>\n        <div class=\"col-12 mx-2 col-md-10 \">\n            <div class=\" text-center text-weight-bold mt-5 header__navbar\">\n                <h1 routerLink=\"/home\" class=\"title__text neoland__title\">Neoland Journal</h1>\n                <h6 class=\"title__text\">Newspaper & Magazine</h6>\n            </div>\n        </div>\n        <div class=\"col-0 col-md-1\">\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-12 d-block d-lg-none\">\n            <div class=\"row headermp__menubar\">\n                <div class=\"col-4\">\n                    <p routerLink=\"/home\" class=\"mt-4 float-right text-uppercase main__text sidebar__home\">Home</p>\n                </div>\n                <div class=\"col-4\">\n                    <div class=\"form-group mt-4 text-center\">\n                        <select [(ngModel)]=\"category\" name=\"inputCategories\" #inputCategories=\"ngModel\"\n                            class=\"form-control main__text text-capitalize mt-2 sidebar__category\"\n                            placeholder=\"General\">\n                            <option value=\"business\">business</option>\n                            <option value=\"entertainment\">entertainment</option>\n                            <option value=\"general\">general</option>\n                            <option value=\"health\">health</option>\n                            <option value=\"science\">science</option>\n                            <option value=\"sports\">sports</option>\n                            <option value=\"technology\">technology</option>\n                        </select>\n                        <button (click)=\"changeUrl()\" type=\"submit\" class=\"btn btn-link mt-1\"><span\n                                class=\"main-text text-dark main__text\">Send</span></button>\n                    </div>\n                </div>\n                <div class=\"col-4\">\n                    <p routerLink=\"/saved-for-later\" class=\"mt-4 float-left text-uppercase main__text sidebar__home\"><i\n                            class=\"fas fa-glasses\"></i> Saved for later</p>\n                </div>\n            </div>\n        </div>\n    </div>\n</header>\n<main>\n    <div class=\"row\">\n        <div class=\"col-0 col-sm-3 d-none d-lg-block\">\n            <div class=\"main__sidebar\">\n                <div class=\"sidebar__contents mx-5\">\n                    <br>\n                    <p routerLink=\"/home\" class=\"ml-2 mb-1 text-uppercase main__text sidebar__home\">Home</p>\n                    <br>\n                    <p class=\"ml-2 mb-1 text-uppercase main__text\">Categories</p>\n                    <div class=\"form-group\">\n                        <select [(ngModel)]=\"category\" name=\"inputCategories\" #inputCategories=\"ngModel\"\n                            class=\"form-control main__text text-capitalize mt-2 sidebar__category\"\n                            placeholder=\"General\">\n                            <option value=\"business\">business</option>\n                            <option value=\"entertainment\">entertainment</option>\n                            <option value=\"general\">general</option>\n                            <option value=\"health\">health</option>\n                            <option value=\"science\">science</option>\n                            <option value=\"sports\">sports</option>\n                            <option value=\"technology\">technology</option>\n                        </select>\n                        <button (click)=\"changeUrl()\" type=\"submit\" class=\"btn btn-dark mt-3\"><span\n                                class=\"main-text\">Send</span></button>\n                    </div>\n                    <br>\n                    <p routerLink=\"/saved-for-later\" class=\"ml-2 mb-1 text-uppercase main__text sidebar__saved\"><i\n                            class=\"fas fa-glasses\"></i> Saved for later</p>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-12 col-lg-9\">\n            <div class=\"main__body\">\n                <div class=\"row w-100\">\n                    <div class=\"col-12 col-lg-7 px-0 w-75\">\n                        <h1 class=\"title__text text-center mt-5\">Everything</h1>\n                        <div class=\"noticiasAll__container\">\n                            <div *ngFor=\"let articleAll of articlesAll, let i = index\" class=\"noticias\">\n                                <div *ngIf=\"showArticle(articlesAll,i)\">\n                                    <div class=\"report__card\" routerLink=\"/report/all/{{i}}\">\n                                        <p class=\"main__text mt-5 mx-5 text-center text-capitalize font-weight-bold\">\n                                            {{i+1}}. {{articleAll[\"title\"]}}</p>\n                                        <div class=\"report__content mx-5\">\n                                            <img class=\"reportAll__img\" src=\"{{articleAll['urlToImage']}}\">\n                                            <small class=\"main__text\">{{articleAll[\"description\"]}}</small>\n                                            <hr class=\"w-75\">\n                                            <small class=\"main__text mt-3\"><span>{{articleAll[\"publishedAt\"]}}</span> |\n                                                <span>{{articleAll[\"author\"]}}</span></small>\n                                        </div>\n                                    </div>\n                                    <p (click)=\"saveForLater(articleAll,i)\"\n                                        class=\"main__text text-right mr-3 saveForLater\"><i class=\"fas fa-glasses\"> Save\n                                            for later</i>\n                                    </p>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"col-12 col-lg-5 px-0 w-75\">\n                        <h1 class=\"title__text text-center mt-5\">Top Headlines</h1>\n                        <div class=\"noticiasTop__container\">\n                            <div *ngFor=\"let articleTop of articlesTop, let i = index\" class=\"noticias\">\n                                <div class=\"report__card\" routerLink=\"/report/top/{{i}}\">\n                                    <p class=\"main__text mt-5 mx-5 text-center text-capitalize font-weight-bold\">\n                                        {{i+1}}.\n                                        {{articleTop[\"title\"]}}</p>\n                                    <div class=\"report__content mx-5\">\n                                        <img class=\"reportTop__img\" src=\"{{articleTop['urlToImage']}}\">\n                                        <small class=\"main__text\">{{articleTop[\"description\"]}}</small>\n                                        <hr class=\"w-75\">\n                                        <small class=\"main__text mt-3\"><span>{{articleTop[\"publishedAt\"]}}</span> |\n                                            <span>{{articleTop[\"author\"]}}</span></small>\n                                    </div>\n                                </div>\n                                <p (click)=\"saveForLater(articleTop,i)\" [ngStyle]=\"style\"\n                                    class=\"main__text text-right mt-3 mr-3 saveForLater\"><i class=\"fas fa-glasses\"> Save\n                                        for later</i></p>\n                            </div>\n                        </div>\n                        <div class=\"space_bar\">\n                        </div>\n\n                        <div class=\"row\">\n                            <div class=\"col-12\">\n                                <h1 class=\"title__text text-center mt-5\">Saved For Later</h1>\n                                <div class=\"savedForLater__container\">\n                                    <div *ngFor=\"let saved of savedDataArray, let i = index\" class=\"saved\">\n                                        <div *ngIf=\"savedDataArray\">\n                                            <div class=\"report__card\" routerLink=\"/report/saved/{{i}}\">\n                                                <p\n                                                    class=\"main__text mt-5 mx-5 text-center text-capitalize font-weight-bold\">\n                                                    {{i+1}}. {{saved.title}}</p>\n                                                <div class=\"report__content mx-5\">\n                                                    <img class=\"reportTop__img\" src=\"{{saved['urlToImage']}}}}\">\n                                                    <small class=\"main__text\">{{saved[\"description\"]}}</small>\n                                                    <hr class=\"w-75\">\n                                                    <small class=\"main__text mt-3\"><span>{{saved[\"publishedAt\"]}}</span>\n                                                        |\n                                                        <span>{{saved[\"author\"]}}</span></small>\n                                                </div>\n                                            </div>\n                                            <p (click)=\"deleteReport(i)\"\n                                                class=\"main__text text-right mt-3 mr-3 saveForLater\"><i\n                                                    class=\"fas fa-trash\">Delete</i></p>\n                                        </div>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</main>");
 
 /***/ }),
 
@@ -443,6 +443,7 @@ let DataService = class DataService {
         this._http.get(url, {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-witdh": "XMLHResponse" })
         }).subscribe((result) => {
+            this.arrTopHeadlines = result;
             this.topHeadlines.next(result);
         });
     }
@@ -450,12 +451,19 @@ let DataService = class DataService {
         this._http.get('https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&lenguage=en&apiKey=6d1e9f0531774a84b98ac454cd66deb4', {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "x-requested-witdh": "XMLHResponse" })
         }).subscribe((result) => {
+            this.arrEverything = result;
             this.everything.next(result);
         });
     }
     saveData(report, i) {
         this.savedForLater.next(report);
         console.log(this.savedDataArray);
+    }
+    getSavedArticles() {
+        return JSON.parse(localStorage.getItem("articles"));
+    }
+    changeCategory(newCategory) {
+        this.category = newCategory;
     }
 };
 DataService.ctorParameters = () => [
@@ -506,6 +514,7 @@ let VHomeComponent = class VHomeComponent {
     constructor(_data, _path) {
         this._data = _data;
         this._path = _path;
+        this.category = "general";
         this.style = { "color": "black" };
         this.subscription1 = this._data.topHeadlines.subscribe((newValue) => {
             this.topHeadlines = newValue;
@@ -518,17 +527,10 @@ let VHomeComponent = class VHomeComponent {
         this.subscription3 = this._data.savedForLater.subscribe((newValue) => {
             this.savedForLater = newValue;
             this.savedDataArray.push(this.savedForLater);
-            console.log(this.savedForLater);
-            console.log(this.savedDataArray);
             if (typeof (Storage) !== 'undefined') {
                 localStorage.setItem("articles", JSON.stringify(this.savedDataArray));
             }
         });
-        this.subscription4 = this._data.savedDataArray.subscribe((newValue) => {
-            this.savedDataArray = newValue;
-        });
-        this.category = _data.category;
-        console.log(this.category);
     }
     showArticle(reports, index) {
         if (index < 15) {
@@ -610,54 +612,80 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { runInThisContext } from 'vm';
 let VReportComponent = class VReportComponent {
     constructor(_data, _path) {
         this._data = _data;
         this._path = _path;
         this.articles = [];
-        this.category = this._data.category;
         this.article = {};
         this.subscriptionTop = this._path.params.subscribe((newValue) => {
             this.i = newValue.i;
             this.type = newValue.type;
-        });
-        this.subscriptionTop = this._data.topHeadlines.subscribe((newValue) => {
-            this.noticias = newValue;
             if (this.type === "top") {
-                this.articlesTop = this.noticias["articles"];
-                this.articleTop = this.articlesTop[this.i];
-                this.article = this.articleTop;
+                this.articlesTop = this._data.arrTopHeadlines["articles"];
+                this.article = this.articlesTop[this.i];
             }
-            console.log(this.article, "top");
-        });
-        this.subscriptionAll = this._path.params.subscribe((newValue) => {
-            this.i = newValue.i;
-            this.type = newValue.type;
-        });
-        this.subscriptionAll = this._data.everything.subscribe((newValue) => {
-            this.noticias = newValue;
             if (this.type === "all") {
-                this.articlesAll = this.noticias["articles"];
-                this.articleAll = this.articlesAll[this.i];
-                this.article = this.articleAll;
+                this.articlesAll = this._data.arrEverything["articles"];
+                this.article = this.articlesAll[this.i];
             }
-            console.log(this.article, "all");
-        });
-        this.subscriptionSaved = this._path.params.subscribe((newValue) => {
-            this.i = newValue.i;
-            this.type = newValue.type;
             if (this.type === "saved") {
-                this.savedReports = JSON.parse(localStorage.getItem("articles"));
-                this.savedReport = this.savedReports[this.i];
-                this.article = this.savedReport;
+                this.articles = this._data.getSavedArticles();
+                this.article = this.articles[this.i];
             }
-            console.log(this.article, "saved");
         });
-        this.category = this._data.category;
+        /*
+            this.subscriptionTop = this._data.topHeadlines.subscribe(
+              (newValue) => {
+                this.noticias = newValue
+                if (this.type === "top") {
+                  this.articlesTop = this.noticias["articles"]
+                  this.articleTop = this.articlesTop[this.i]
+                  this.article = this.articleTop;
+                }
+                console.log("hola")
+                console.log(this.article, "top")
+              })
+        
+            this.subscriptionAll = this._path.params.subscribe(
+              (newValue) => {
+                this.i = newValue.i;
+                this.type = newValue.type;
+              })
+            this.subscriptionAll = this._data.everything.subscribe(
+              (newValue) => {
+                this.noticias = newValue
+                if (this.type === "all") {
+                  this.articlesAll = this.noticias["articles"]
+                  this.articleAll = this.articlesAll[this.i]
+                  this.article = this.articleAll;
+                }
+        
+                console.log(this.article, "all")
+              }
+            )
+        
+        
+            this.subscriptionSaved = this._path.params.subscribe(
+              (newValue) => {
+                this.i = newValue.i;
+                this.type = newValue.type;
+                if (this.type === "saved") {
+                  this.savedReports = JSON.parse(localStorage.getItem("articles"))
+                  this.savedReport = this.savedReports[this.i]
+                  this.article = this.savedReport;
+                  console.log(this.article)
+                }
+                console.log(this.article, "saved")
+              })
+        */
+        //this.category = this._data.category
     }
     ngOnInit() {
-        this._data.httpGetTop(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&apiKey=6d1e9f0531774a84b98ac454cd66deb4`);
-        this._data.httpGetAll();
+        //this.cat = this._data.cat
+        //  this._data.httpGetTop(`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this.cat}&apiKey=6d1e9f0531774a84b98ac454cd66deb4`)
+        // this._data.httpGetAll()
     }
 };
 VReportComponent.ctorParameters = () => [
