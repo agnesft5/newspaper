@@ -10,9 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VHomeComponent implements OnInit {
 
-  category:string = "general";
+  category: string = "general";
   topHeadlines: any; //data
   everything: any //data
+  openedTrue: boolean = false;
+  savedArticle: number[] = [];
+  included: boolean = false;
+  selectedArticle: number;
 
   subscription1: Subscription;
   subscription2: Subscription;
@@ -28,12 +32,12 @@ export class VHomeComponent implements OnInit {
 
   style: object = { "color": "black" }
 
-  url:string;
+  url: string;
 
 
   constructor(public _data: DataService, public _path: ActivatedRoute) {
 
-    
+
 
     this.subscription1 = this._data.topHeadlines.subscribe(
       (newValue) => {
@@ -69,7 +73,14 @@ export class VHomeComponent implements OnInit {
 
   saveForLater(report, index) {
     //this.style = { "color": "#888" }
-    this._data.saveData(report, index)
+    this.savedArticle.push(index);
+    if (this.savedArticle.includes(index)) {
+      this.included = true;
+      this.selectedArticle = index;
+    } else {
+      this.included = false;
+    }
+    this._data.saveData(report, index);
   }
 
   deleteReport(index) {
@@ -79,9 +90,23 @@ export class VHomeComponent implements OnInit {
     }
   }
 
-  changeUrl(){
+
+  openSelect() {
+    if (this.openedTrue == false) {
+      this.openedTrue = true
+    } else {
+      this.openedTrue = false;
+    }
+  }
+
+  changeUrl() {
     this.url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${this.category}&apiKey=6d1e9f0531774a84b98ac454cd66deb4`;
     this._data.httpGetTop(this.url)
+  }
+
+  changeCategory(value) {
+    this.category = value;
+    this.changeUrl();
   }
 
   ngOnInit() {

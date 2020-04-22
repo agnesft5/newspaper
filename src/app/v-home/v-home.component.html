@@ -14,29 +14,70 @@
     <div class="row">
         <div class="col-12 d-block d-lg-none">
             <div class="row headermp__menubar">
-                <div class="col-4">
-                    <p routerLink="/home" class="mt-4 float-right text-uppercase main__text sidebar__home">Home</p>
+                <div *ngIf="!openedTrue" class="col-2">
+                    <p routerLink="/home" class="mt-4 float-right text-uppercase main__text sidebar__home"><i
+                            class="fas fa-home" style="position: absolute; top: 50%;"></i></p>
                 </div>
-                <div class="col-4">
+                <div class="col-8">
                     <div class="form-group mt-4 text-center">
-                        <select [(ngModel)]="category" name="inputCategories" #inputCategories="ngModel"
-                            class="form-control main__text text-capitalize mt-2 sidebar__category"
-                            placeholder="General">
-                            <option value="business">business</option>
-                            <option value="entertainment">entertainment</option>
-                            <option value="general">general</option>
-                            <option value="health">health</option>
-                            <option value="science">science</option>
-                            <option value="sports">sports</option>
-                            <option value="technology">technology</option>
-                        </select>
-                        <button (click)="changeUrl()" type="submit" class="btn btn-link mt-1"><span
-                                class="main-text text-dark main__text">Send</span></button>
+                        <div class="cats__container ml-4 mt-4" (click)="openSelect()"
+                            [ngClass]="{cats__container: !openedTrue, cats__containerOp: openedTrue}">
+                            <div class="row cat__container1">
+                                <div class="col-9">
+                                    <p class="main__text ml-3 text-capitalize font-weight-bold">{{category}}</p>
+                                </div>
+                                <div class="col-3">
+                                    <i class="fas fa-sort-down" style="position: absolute; top: 6%;"></i>
+                                </div>
+                            </div>
+                            <div *ngIf="category != 'business'" class="row cat__container">
+                                <div class="col-9">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('business')">
+                                        business</p>
+                                </div>
+                            </div>
+                            <div *ngIf="category != 'entertainment'" class="row  cat__container">
+                                <div class="col-9">
+                                    <p class="main__text text-capitalize ml-3"
+                                        (click)="changeCategory('entertainment')">entertainment</p>
+                                </div>
+                            </div>
+                            <div *ngIf="category != 'general'" class="row cat__container">
+                                <div class="col-9">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('general')">
+                                        general</p>
+                                </div>
+                            </div>
+                            <div *ngIf="category != 'health'" class="row cat__container">
+                                <div class="col-9">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('health')">health
+                                    </p>
+                                </div>
+                            </div>
+                            <div *ngIf="category != 'science'" class="row cat__container">
+                                <div class="col-9">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('science')">
+                                        science</p>
+                                </div>
+                            </div>
+                            <div *ngIf="category != 'sports'" class="row cat__container">
+                                <div class="col-9">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('sports')">sports
+                                    </p>
+                                </div>
+                            </div>
+                            <div *ngIf="category != 'technology'" class="row cat__container">
+                                <div class="col-9">
+                                    <p class="main__text text-capitalize ml-3 pb-2"
+                                        (click)="changeCategory('technology')">technology</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div *ngIf="!openedTrue" class="col-2">
                     <p routerLink="/saved-for-later" class="mt-4 float-left text-uppercase main__text sidebar__home"><i
-                            class="fas fa-glasses"></i> Saved for later</p>
+                            class="fas fa-glasses" style="position: absolute; top: 50%;"></i></p>
                 </div>
             </div>
         </div>
@@ -50,32 +91,94 @@
                     <br>
                     <p routerLink="/home" class="ml-2 mb-1 text-uppercase main__text sidebar__home">Home</p>
                     <br>
+                    <p routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
+                            class="fas fa-glasses"></i> &nbsp; Saved for later</p>
+                    <br>
                     <p class="ml-2 mb-1 text-uppercase main__text">Categories</p>
-                    <div class="form-group">
-                        <select [(ngModel)]="category" name="inputCategories" #inputCategories="ngModel"
-                            class="form-control main__text text-capitalize mt-2 sidebar__category"
-                            placeholder="General">
-                            <option value="business">business</option>
-                            <option value="entertainment">entertainment</option>
-                            <option value="general">general</option>
-                            <option value="health">health</option>
-                            <option value="science">science</option>
-                            <option value="sports">sports</option>
-                            <option value="technology">technology</option>
-                        </select>
-                        <button (click)="changeUrl()" type="submit" class="btn btn-dark mt-3"><span
-                                class="main-text">Send</span></button>
+                    <div class="cats__container ml-4 mt-4" (click)="openSelect()"
+                        [ngClass]="{cats__container: !openedTrue, cats__containerOp: openedTrue}">
+                        <div class="row cat__container1">
+                            <div class="col-9">
+                                <p class="main__text ml-5 text-capitalize font-weight-bold">{{category}}</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <i class="fas fa-sort-down" style="position: absolute; top: 6%;"></i>
+                            </div>
+                        </div>
+                        <div *ngIf="category != 'business'" class="row cat__container">
+                            <div class="col-9">
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('business')">business
+                                </p>
+                            </div>
+                        </div>
+                        <div *ngIf="category != 'entertainment'" class="row  cat__container">
+                            <div class="col-9">
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('entertainment')">
+                                    entertainment</p>
+                            </div>
+                        </div>
+                        <div *ngIf="category != 'general'" class="row cat__container">
+                            <div class="col-9">
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('general')">general
+                                </p>
+                            </div>
+                        </div>
+                        <div *ngIf="category != 'health'" class="row cat__container">
+                            <div class="col-9">
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('health')">health</p>
+                            </div>
+                        </div>
+                        <div *ngIf="category != 'science'" class="row cat__container">
+                            <div class="col-9">
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('science')">science
+                                </p>
+                            </div>
+                        </div>
+                        <div *ngIf="category != 'sports'" class="row cat__container">
+                            <div class="col-9">
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('sports')">sports</p>
+                            </div>
+                        </div>
+                        <div *ngIf="category != 'technology'" class="row cat__container">
+                            <div class="col-9">
+                                <p class="main__text text-capitalize ml-5 pb-2" (click)="changeCategory('technology')">
+                                    technology</p>
+                            </div>
+                        </div>
                     </div>
                     <br>
-                    <p routerLink="/saved-for-later" class="ml-2 mb-1 text-uppercase main__text sidebar__saved"><i
-                            class="fas fa-glasses"></i> Saved for later</p>
                 </div>
             </div>
         </div>
         <div class="col-12 col-lg-9">
             <div class="main__body">
                 <div class="row w-100">
-                    <div class="col-12 col-lg-7 px-0 w-75">
+                    <div class="col-12 col-lg-6 px-0 w-75">
+                        <!--Aquí-->
+                        <h1 class="title__text text-center mt-5">Top Headlines</h1>
+                        <div class="noticiasTop__container">
+                            <div *ngFor="let articleTop of articlesTop, let i = index" class="noticias">
+                                <div class="report__card" routerLink="/report/top/{{i}}">
+                                    <p class="main__text mt-5 mx-5 text-center text-capitalize font-weight-bold">
+                                        {{i+1}}.
+                                        {{articleTop["title"]}}</p>
+                                    <div class="report__content mx-5">
+                                        <img class="reportTop__img" src="{{articleTop['urlToImage']}}">
+                                        <small class="main__text">{{articleTop["description"]}}</small>
+                                        <hr class="w-75">
+                                        <small class="main__text mt-3"><span>{{articleTop["publishedAt"]}}</span> |
+                                            <span>{{articleTop["author"]}}</span></small>
+                                    </div>
+                                </div>
+                                <p (click)="saveForLater(articleTop,i)" [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}"
+                                    class="main__text text-right mt-3 mr-3 saveForLater"><i class="fas fa-glasses">
+                                        &nbsp; Save
+                                        for later</i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 px-0 w-75">
+                        <!--Aquí-->
                         <h1 class="title__text text-center mt-5">Everything</h1>
                         <div class="noticiasAll__container">
                             <div *ngFor="let articleAll of articlesAll, let i = index" class="noticias">
@@ -92,32 +195,12 @@
                                         </div>
                                     </div>
                                     <p (click)="saveForLater(articleAll,i)"
-                                        class="main__text text-right mr-3 saveForLater"><i class="fas fa-glasses"> Save
+                                        class="main__text text-right mr-3 saveForLater"
+                                        [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}"><i class="fas fa-glasses">
+                                            &nbsp; Save
                                             for later</i>
                                     </p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-5 px-0 w-75">
-                        <h1 class="title__text text-center mt-5">Top Headlines</h1>
-                        <div class="noticiasTop__container">
-                            <div *ngFor="let articleTop of articlesTop, let i = index" class="noticias">
-                                <div class="report__card" routerLink="/report/top/{{i}}">
-                                    <p class="main__text mt-5 mx-5 text-center text-capitalize font-weight-bold">
-                                        {{i+1}}.
-                                        {{articleTop["title"]}}</p>
-                                    <div class="report__content mx-5">
-                                        <img class="reportTop__img" src="{{articleTop['urlToImage']}}">
-                                        <small class="main__text">{{articleTop["description"]}}</small>
-                                        <hr class="w-75">
-                                        <small class="main__text mt-3"><span>{{articleTop["publishedAt"]}}</span> |
-                                            <span>{{articleTop["author"]}}</span></small>
-                                    </div>
-                                </div>
-                                <p (click)="saveForLater(articleTop,i)" [ngStyle]="style"
-                                    class="main__text text-right mt-3 mr-3 saveForLater"><i class="fas fa-glasses"> Save
-                                        for later</i></p>
                             </div>
                         </div>
                         <div class="space_bar">
@@ -144,7 +227,7 @@
                                             </div>
                                             <p (click)="deleteReport(i)"
                                                 class="main__text text-right mt-3 mr-3 saveForLater"><i
-                                                    class="fas fa-trash">Delete</i></p>
+                                                    class="fas fa-trash"> &nbsp; Delete</i></p>
                                         </div>
                                     </div>
                                 </div>
