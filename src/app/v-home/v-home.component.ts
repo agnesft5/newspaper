@@ -14,9 +14,12 @@ export class VHomeComponent implements OnInit {
   topHeadlines: any; //data
   everything: any //data
   openedTrue: boolean = false;
-  savedArticle: number[] = [];
-  included: boolean = false;
-  selectedArticle: number;
+  // savedArticleTop: number[] = [];
+  // savedArticleAll: number[] = [];
+  includedTop: boolean = false;
+  includedAll: boolean = false;
+  selectedArticleTop: number;
+  selectedArticleAll: number;
 
   subscription1: Subscription;
   subscription2: Subscription;
@@ -30,7 +33,6 @@ export class VHomeComponent implements OnInit {
   savedForLater: object;
   savedDataArray: object[];
 
-  style: object = { "color": "black" }
 
   url: string;
 
@@ -71,14 +73,16 @@ export class VHomeComponent implements OnInit {
     }
   }
 
-  saveForLater(report, index) {
-    //this.style = { "color": "#888" }
-    this.savedArticle.push(index);
-    if (this.savedArticle.includes(index)) {
-      this.included = true;
-      this.selectedArticle = index;
+  saveForLater(report, index, type) {
+    if (type == "top") {
+      this.includedTop = true;
+      this.selectedArticleTop = index;
+    } else if (type == "all") {
+      this.includedAll = true;
+      this.selectedArticleAll = index;
     } else {
-      this.included = false;
+      this.includedAll = false;
+      this.includedTop = false;
     }
     this._data.saveData(report, index);
   }
@@ -104,9 +108,15 @@ export class VHomeComponent implements OnInit {
     this._data.httpGetTop(this.url)
   }
 
-  changeCategory(value) {
+  scroll(element: HTMLElement) {
+    element.scrollTo(0, 0)
+  }
+
+  changeCategory(value, element) {
     this.category = value;
     this.changeUrl();
+    window.scrollTo(0, 0)
+    this.scroll(element)
   }
 
   ngOnInit() {

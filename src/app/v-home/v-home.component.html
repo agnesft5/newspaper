@@ -32,37 +32,37 @@
                             </div>
                             <div *ngIf="category != 'business'" class="row cat__container">
                                 <div class="col-9">
-                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('business')">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('business', target)">
                                         business</p>
                                 </div>
                             </div>
                             <div *ngIf="category != 'entertainment'" class="row  cat__container">
                                 <div class="col-9">
                                     <p class="main__text text-capitalize ml-3"
-                                        (click)="changeCategory('entertainment')">entertainment</p>
+                                        (click)="changeCategory('entertainment', target)">entertainment</p>
                                 </div>
                             </div>
                             <div *ngIf="category != 'general'" class="row cat__container">
                                 <div class="col-9">
-                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('general')">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('general', target)">
                                         general</p>
                                 </div>
                             </div>
                             <div *ngIf="category != 'health'" class="row cat__container">
                                 <div class="col-9">
-                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('health')">health
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('health', target)">health
                                     </p>
                                 </div>
                             </div>
                             <div *ngIf="category != 'science'" class="row cat__container">
                                 <div class="col-9">
-                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('science')">
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('science', target)">
                                         science</p>
                                 </div>
                             </div>
                             <div *ngIf="category != 'sports'" class="row cat__container">
                                 <div class="col-9">
-                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('sports')">sports
+                                    <p class="main__text text-capitalize ml-3" (click)="changeCategory('sports', target)">sports
                                     </p>
                                 </div>
                             </div>
@@ -107,41 +107,41 @@
                         </div>
                         <div *ngIf="category != 'business'" class="row cat__container">
                             <div class="col-9">
-                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('business')">business
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('business', target)">business
                                 </p>
                             </div>
                         </div>
                         <div *ngIf="category != 'entertainment'" class="row  cat__container">
                             <div class="col-9">
-                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('entertainment')">
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('entertainment', target)">
                                     entertainment</p>
                             </div>
                         </div>
                         <div *ngIf="category != 'general'" class="row cat__container">
                             <div class="col-9">
-                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('general')">general
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('general', target)">general
                                 </p>
                             </div>
                         </div>
                         <div *ngIf="category != 'health'" class="row cat__container">
                             <div class="col-9">
-                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('health')">health</p>
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('health', target)">health</p>
                             </div>
                         </div>
                         <div *ngIf="category != 'science'" class="row cat__container">
                             <div class="col-9">
-                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('science')">science
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('science', target)">science
                                 </p>
                             </div>
                         </div>
                         <div *ngIf="category != 'sports'" class="row cat__container">
                             <div class="col-9">
-                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('sports')">sports</p>
+                                <p class="main__text text-capitalize ml-5" (click)="changeCategory('sports', target)">sports</p>
                             </div>
                         </div>
                         <div *ngIf="category != 'technology'" class="row cat__container">
                             <div class="col-9">
-                                <p class="main__text text-capitalize ml-5 pb-2" (click)="changeCategory('technology')">
+                                <p class="main__text text-capitalize ml-5 pb-2" (click)="changeCategory('technology', target)">
                                     technology</p>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                     <div class="col-12 col-lg-6 px-0 w-75">
                         <!--Aquí-->
                         <h1 class="title__text text-center mt-5">Top Headlines</h1>
-                        <div class="noticiasTop__container">
+                        <div #target class="noticiasTop__container">
                             <div *ngFor="let articleTop of articlesTop, let i = index" class="noticias">
                                 <div class="report__card" routerLink="/report/top/{{i}}">
                                     <p class="main__text mt-5 mx-5 text-center text-capitalize font-weight-bold">
@@ -170,9 +170,9 @@
                                             <span>{{articleTop["author"]}}</span></small>
                                     </div>
                                 </div>
-                                <p (click)="saveForLater(articleTop,i)"
-                                    [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}"
-                                    class="main__text text-right mt-3 mr-3 saveForLater"><i class="fas fa-glasses">
+                                <p (click)="saveForLater(articleTop,i, 'top')"
+                                    [ngClass]="{saveForLater: includedTop == false, savedArticle: includedTop == true && selectedArticleTop == i}"
+                                    class="main__text text-right mt-3 mr-3 font-weight-bolder"><i class="fas fa-glasses">
                                         </i>&nbsp; Save
                                         for later</p>
                             </div>
@@ -195,9 +195,9 @@
                                                 <span>{{articleAll["author"]}}</span></small>
                                         </div>
                                     </div>
-                                    <p (click)="saveForLater(articleAll,i)"
-                                        class="main__text text-right mr-3 saveForLater"
-                                        [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}">
+                                    <p (click)="saveForLater(articleAll,i, 'all')"
+                                        class="main__text text-right mr-3 font-weight-bolder"
+                                        [ngClass]="{saveForLater: includedAll == false, savedArticle: includedAll == true && selectedArticleAll == i}">
                                         <i class="fas fa-glasses">
                                         </i>&nbsp; Save
                                         for later

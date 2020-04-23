@@ -76,6 +76,11 @@
 .sidebar__saved:hover{
     color: #888;
 }
+/* .saveForLaterClicked{
+    cursor: pointer;
+    font-weight: bolder;
+    color: teal;
+} */
 .saveForLater{
     cursor: pointer;
     font-weight: bolder;
@@ -132,4 +137,5 @@
 .savedArticle{
     color: #888;
     cursor: pointer;
+    font-weight: bolder;
 }
