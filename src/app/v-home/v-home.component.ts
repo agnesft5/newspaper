@@ -20,6 +20,10 @@ export class VHomeComponent implements OnInit {
   includedAll: boolean = false;
   selectedArticleTop: number;
   selectedArticleAll: number;
+  initialAll: number = 0;
+  finalAll: number = 15;
+  initialTop: number = 0;
+  finalTop: number = 15;
 
   subscription1: Subscription;
   subscription2: Subscription;
@@ -66,10 +70,73 @@ export class VHomeComponent implements OnInit {
   }
 
   showArticle(reports, index) {
-    if (index < 15) {
+    if (reports == this.articlesAll && index >= this.initialAll && index < this.finalAll) {
+      return true;
+    } else if (reports == this.articlesTop && index >= this.initialTop && index < this.finalTop) {
       return true;
     } else {
       return false;
+    }
+  }
+  next(reports, element) {
+    if (reports == this.articlesAll) {
+      console.log(this.articlesAll.length)
+      if (this.initialAll < this.articlesAll.length && this.initialAll >= 0 && this.finalAll < this.articlesAll.length) {
+        this.initialAll += 15;
+        this.finalAll += 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      } else {
+        this.initialAll = 0;
+        this.finalAll = 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      }
+
+    } else if (reports == this.articlesTop) {
+      console.log(this.articlesTop.length)
+      if (this.initialTop < this.articlesTop.length && this.initialTop >= 0 && this.finalTop < this.articlesTop.length) {
+        this.initialTop += 15;
+        this.finalTop += 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      } else {
+        this.initialTop = 0;
+        this.finalTop = 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      }
+    }
+  }
+
+  previous(reports, element) {
+    if (reports == this.articlesAll) {
+      console.log(this.articlesAll.length)
+      if (this.initialAll > 0 && this.initialAll < this.articlesAll.length && this.finalAll >= 15) {
+        this.initialAll -= 15;
+        this.finalAll -= 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      } else {
+        this.initialAll = 0;
+        this.finalAll = 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      }
+
+    } else if (reports == this.articlesTop) {
+      console.log(this.articlesTop.length)
+      if (this.initialTop > 0 && this.initialTop < this.articlesTop.length && this.finalTop >= 15) {
+        this.initialTop -= 15;
+        this.finalTop -= 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      } else {
+        this.initialTop = 0;
+        this.finalTop = 15;
+        element.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      }
     }
   }
 
