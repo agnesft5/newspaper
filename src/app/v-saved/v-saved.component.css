@@ -12,6 +12,7 @@
 }
 .main__text{
     font-family: 'PT Serif', serif;
+    outline: none;
 }
 .noticias__container{
     height: 80vh;

@@ -170,10 +170,11 @@
                                             <span>{{articleTop["author"]}}</span></small>
                                     </div>
                                 </div>
-                                <p (click)="saveForLater(articleTop,i)" [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}"
+                                <p (click)="saveForLater(articleTop,i)"
+                                    [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}"
                                     class="main__text text-right mt-3 mr-3 saveForLater"><i class="fas fa-glasses">
-                                        &nbsp; Save
-                                        for later</i></p>
+                                        </i>&nbsp; Save
+                                        for later</p>
                             </div>
                         </div>
                     </div>
@@ -196,9 +197,10 @@
                                     </div>
                                     <p (click)="saveForLater(articleAll,i)"
                                         class="main__text text-right mr-3 saveForLater"
-                                        [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}"><i class="fas fa-glasses">
-                                            &nbsp; Save
-                                            for later</i>
+                                        [ngClass]="{saveForLater: included == false, savedArticle: included == true && selectedArticle == i}">
+                                        <i class="fas fa-glasses">
+                                        </i>&nbsp; Save
+                                        for later
                                     </p>
                                 </div>
                             </div>
@@ -227,7 +229,7 @@
                                             </div>
                                             <p (click)="deleteReport(i)"
                                                 class="main__text text-right mt-3 mr-3 saveForLater"><i
-                                                    class="fas fa-trash"> &nbsp; Delete</i></p>
+                                                    class="fas fa-trash"></i> &nbsp; Delete</p>
                                         </div>
                                     </div>
                                 </div>

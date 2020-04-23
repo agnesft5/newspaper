@@ -15,7 +15,7 @@ export class DataService {
   topHeadlines: Subject<object> = new Subject<object>();
   everything: Subject<object> = new Subject<object>();
   savedForLater: Subject<object> = new Subject<object>();
-  savedDataArray: BehaviorSubject<object[]> = new BehaviorSubject<object[]>([]);
+  //savedDataArray: BehaviorSubject<object[]> = new BehaviorSubject<object[]>([]);
   
   arrTopHeadlines: {};
   arrEverything: {};
@@ -50,7 +50,7 @@ export class DataService {
 
   saveData(report: object, i: number): void {
     this.savedForLater.next(report)
-    console.log(this.savedDataArray)
+    //console.log(this.savedDataArray)
   }
 
   getSavedArticles() {

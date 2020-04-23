@@ -12,6 +12,7 @@
 }
 .main__text{
     font-family: 'PT Serif', serif;
+    outline: none;
 }
 .noticiasTop__container{
     height: 150vh;
@@ -77,6 +78,7 @@
 }
 .saveForLater{
     cursor: pointer;
+    font-weight: bolder;
 }
 .savedForLater__container{
     height: 54vh;
